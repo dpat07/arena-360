@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>360 View</title>
+    <title>360 Viewer</title>
     <style>
         body {
             margin: 0;
@@ -12,36 +12,32 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: white;
-            font-family: sans-serif;
         }
         #spinner {
             width: 800px;
             height: 600px;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/spritespin@4.0.11/release/spritespin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/spritespin@4.0.11/release/spritespin.min.js" defer></script>
 </head>
 <body>
-    <div id="spinner">Loading viewer...</div>
-    <script>
-        try {
+    <div id="spinner"></div>
+    <script defer>
+        window.addEventListener('DOMContentLoaded', function () {
             const images = ["arena_0000.jpg", "arena_0001.jpg", "arena_0002.jpg", "arena_0003.jpg", "arena_0004.jpg", "arena_0005.jpg", "arena_0006.jpg", "arena_0007.jpg", "arena_0008.jpg", "arena_0009.jpg", "arena_0010.jpg", "arena_0011.jpg", "arena_0012.jpg", "arena_0013.jpg", "arena_0014.jpg", "arena_0015.jpg", "arena_0016.jpg", "arena_0017.jpg", "arena_0018.jpg", "arena_0019.jpg", "arena_0020.jpg", "arena_0021.jpg", "arena_0022.jpg", "arena_0023.jpg", "arena_0024.jpg", "arena_0025.jpg", "arena_0026.jpg", "arena_0027.jpg", "arena_0028.jpg", "arena_0029.jpg", "arena_0030.jpg", "arena_0031.jpg", "arena_0032.jpg", "arena_0033.jpg", "arena_0034.jpg", "arena_0035.jpg"];
+            const framePaths = images.map(img => img);
+
             SpriteSpin.create({
-                source: images,
+                source: framePaths,
                 width: 800,
                 height: 600,
                 sense: -1,
                 frameTime: 60,
                 animate: false,
                 responsive: true,
-                plugins: ["drag"],
-                target: "#spinner"
+                plugins: ["drag"]
             });
-        } catch (error) {
-            document.getElementById('spinner').innerText = "Error loading 360 viewer.";
-            console.error("Viewer error:", error);
-        }
+        });
     </script>
 </body>
 </html>
